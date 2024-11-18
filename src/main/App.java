@@ -24,25 +24,19 @@ public class App {
 			} while (opcao < 0 || opcao > 4);
 			switch (opcao) {
 			case 0:
-				cadastrarCarro();
-				//cadastrarVeiculo();
+				cadastrarVeiculo(0);
 				break;
 			case 1:
-				cadastrarMoto();
-				//cadastrarVeiculo();
+				cadastrarVeiculo(1);
 				break;
 			case 2:
-				alugarCarro();
-				//alugarVeiculo();
+				alugarVeiculo(0);
 				break;
 			case 3:
-				alugarMoto();
-				//alugarVeiculo();
+				alugarVeiculo(1);
 				break;
 			case 4:
-				locadora.listarCarros();
-				locadora.listarMotos();
-				//locadora.listarVeiculos();
+				locadora.listarVeiculos();
 				break;
 		}
 		System.out.println("Deseja realizar mais alguma operacao? (s/n)");
@@ -57,118 +51,11 @@ public class App {
 		} while(continuar.equals("s"));
 	}
 	
-	public static void cadastrarCarro() {
+	public static void cadastrarVeiculo(int tipoVeiculo) {
 		String marca = "";
 		String modelo = "";
 		int ano = 0;
 		double precoDia = 0.0;
-		int numPortas = 2;
-		
-		System.out.println("Qual a marca?");
-		marca = scan.next().toLowerCase();
-		
-		System.out.println("Qual o modelo?");
-		modelo = scan.next().toLowerCase();
-		
-		System.out.println("Qual o ano?");
-		ano = scan.nextInt();
-		
-		System.out.println("Qual o preco por dia");
-		precoDia = scan.nextDouble();
-		
-		System.out.println("Ele é de 2 ou 4 portas?");
-		do {
-			numPortas = scan.nextInt();
-			if(!(numPortas == 2 || numPortas == 4)) {
-				System.out.println("Opcao invalida, digite novamente");
-			}
-		} while(!(numPortas == 2 || numPortas == 4));
-		
-		Carro carro = new Carro(marca, modelo, ano, precoDia, numPortas);
-		locadora.adicionarVeiculo(carro);
-	}
-	public static void cadastrarMoto() {
-		String marca = "";
-		String modelo = "";
-		int ano = 0;
-		double precoDia = 0.0;
-		String bagageiro = "";
-		
-		System.out.println("Qual a marca?");
-		marca = scan.next().toLowerCase();
-		
-		System.out.println("Qual o modelo?");
-		modelo = scan.next().toLowerCase();
-		
-		System.out.println("Qual o ano?");
-		ano = scan.nextInt();
-		
-		System.out.println("Qual o preco por dia");
-		precoDia = scan.nextDouble();
-		
-		System.out.println("Ela possui bagageiro? (s/n)");
-		do {
-			bagageiro = scan.next();
-			if(!(bagageiro.equals("s") || bagageiro.equals("n"))) {
-				System.out.println("Opcao invalida, digite novamente");
-			}
-		} while(!(bagageiro.equals("s") || bagageiro.equals("n")));
-		
-		Moto moto = new Moto(marca, modelo, ano, precoDia, bagageiro == "s");
-		locadora.adicionarVeiculo(moto);
-	}
-	public static void alugarCarro() {
-		String modelo = "";
-		int dias = 0;
-		
-		System.out.println("Qual o modelo do carro a ser alugado?");
-		modelo = scan.next().toLowerCase();
-		
-		System.out.println("Por quantos dias?");
-		do {
-			dias = scan.nextInt();
-			if(dias < 1) {
-				System.out.println("Opcao invalida, digite novamente: ");
-			}
-		} while (dias < 1);
-		
-		locadora.alugarVeiculo(new Carro(null, modelo, 0, 0.0, 0), dias);
-	}
-	public static void alugarMoto() {
-		String modelo = "";
-		int dias = 0;
-		
-		System.out.println("Qual o modelo da moto a ser alugada?");
-		modelo = scan.next().toLowerCase();
-		
-		System.out.println("Por quantos dias?");
-		do {
-			dias = scan.nextInt();
-			if(dias < 1) {
-				System.out.println("Opcao invalida, digite novamente: ");
-			}
-		} while (dias < 1);
-		
-		locadora.alugarVeiculo(new Moto(null, modelo, 0, 0.0, false), dias);
-	}
-	
-	public static void cadastrarVeiculo() {
-		String marca = "";
-		String modelo = "";
-		int ano = 0;
-		double precoDia = 0.0;
-	
-		int tipoVeiculo;
-		
-		System.out.println("Qual o tipo do veiculo?");
-		System.out.println("[0] - Carro");
-		System.out.println("[1] - Moto");
-		do {
-			tipoVeiculo = scan.nextInt();
-			if(tipoVeiculo < 0 || tipoVeiculo > 1) {
-				System.out.println("Opcao invalida, digite novamente: ");
-			}
-		} while(tipoVeiculo < 0 || tipoVeiculo > 1);
 		
 		System.out.println("Qual a marca?");
 		marca = scan.next().toLowerCase();
@@ -209,19 +96,7 @@ public class App {
 		}
 		
 	}
-	public static void alugarVeiculo() {
-		
-		int tipoVeiculo;
-		
-		System.out.println("Qual o tipo do veiculo?");
-		System.out.println("[0] - Carro");
-		System.out.println("[1] - Moto");
-		do {
-			tipoVeiculo = scan.nextInt();
-			if(tipoVeiculo < 0 || tipoVeiculo > 1) {
-				System.out.println("Opcao invalida, digite novamente: ");
-			}
-		} while(tipoVeiculo < 0 || tipoVeiculo > 1);
+	public static void alugarVeiculo(int tipoVeiculo) {
 		
 		String modelo = "";
 		int dias = 0;
